@@ -9,6 +9,9 @@ ttkbootstrap = "*"
 numpy = "*"
 matplotlib = "*"
 pandas = "*"
+pytesseract = "*"
+pillow = "*"
+opencv-python = "*"
 
 [dev-packages]
 
