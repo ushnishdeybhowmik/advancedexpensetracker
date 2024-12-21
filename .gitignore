@@ -3,3 +3,4 @@
 *.ico
 __pycache__
 *.db
+scratch.py

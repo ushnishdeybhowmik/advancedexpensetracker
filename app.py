@@ -6,8 +6,6 @@ from db import *
 from tools import *
 import datetime as dt
 
-create_user_table()
-
 app = ttkb.Window(themename="vapor")
 app.geometry("1920x1080")
 app.title("spend.ai")
@@ -43,6 +41,7 @@ input_label_person = ttk.Label(input_frame, text="To", font=("Segoe UI", 8, "bol
 input_label_person.place(x=20, y=140, width = 100, height=20)
 input_entry_person = ttkb.Combobox(input_frame, bootstyle=DARK, textvariable=input_label_var_person, values=user_names)
 input_entry_person.place(x=140, y=140, width=320)
+update_combobox(input_frame, input_entry_person)
 
 input_label_var_date = tk.StringVar(input_frame, str(dt.datetime.now().strftime("%Y-%m-%d")))
 input_label_date = ttk.Label(input_frame, text="Date", font=("Segoe UI", 8, "bold"), background=colors.dark)
@@ -73,5 +72,11 @@ btn_upload.place(x=190, y=370, width=260, height=35)
 file_label = ttk.Label(input_frame, textvariable=file_path, font=("Segoe UI", 8, "bold"), foreground='#FFFFFF', background=colors.dark)
 file_label.place(x=20, y=410, width = 460, height=20)
 
+success = tk.StringVar(input_frame, "")
+submit_btn = ttk.Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success))
+submit_btn.place(x=20, y=450, width=460, height=35)
+
+success_label = ttk.Label(input_frame, textvariable=success, font=("Segoe UI", 8, "bold"), foreground='#00FF00', background=colors.dark)
+success_label.place(x=20, y=490, width = 460, height=20)
 
 app.mainloop()  
