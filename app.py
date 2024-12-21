@@ -11,7 +11,7 @@ from dataview import *
 app = ttkb.Window(themename="vapor")
 app.geometry("1920x1080")
 app.title("spend.ai")
-app.iconbitmap('logo.ico')
+app.iconbitmap('assets/logo.ico')
 
 colors = app.style.colors
 

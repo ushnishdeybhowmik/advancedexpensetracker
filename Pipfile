@@ -12,6 +12,7 @@ pandas = "*"
 pytesseract = "*"
 pillow = "*"
 opencv-python = "*"
+pyinstaller = "*"
 
 [dev-packages]
 
