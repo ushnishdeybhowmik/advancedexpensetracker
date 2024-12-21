@@ -35,7 +35,8 @@ def extract_info_gpay(image):
             name = " ".join(name)
             print(name)
             amount = corpus[i+3]
-            amount = amount[1:]
+            amount = amount[1:].split(",")[:]
+            amount = "".join(amount)
             print(amount)
             corpus.pop(i)
         elif re.match(date_pattern, line):
@@ -51,4 +52,4 @@ def extract_info_gpay(image):
             print(txn_id)
             corpus.pop(i)
             
-    return name, int(amount), date, pmode, int(txn_id)
+    return name, int(amount), date.split(" ")[0], date.split(" ")[1], pmode, int(txn_id)

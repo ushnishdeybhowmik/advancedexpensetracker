@@ -1,8 +1,9 @@
 import tkinter as tk 
-from tkinter import ttk
+from tkinter import ttk, filedialog
 import ttkbootstrap as ttkb
 from ttkbootstrap.constants import *
 from db import *
+from tools import *
 import datetime as dt
 
 create_user_table()
@@ -55,7 +56,22 @@ input_label_time.place(x=20, y=220, width = 100, height=20)
 input_entry_time = ttk.Entry(input_frame, textvariable=input_label_var_time)
 input_entry_time.place(x=140, y=220, width=320)
 
+input_var_txn = tk.StringVar(input_frame, "")
+input_label_txn = ttk.Label(input_frame, text="Txn ID", font=("Segoe UI", 8, "bold"), background=colors.dark)
+input_label_txn.place(x=20, y=260, width = 100, height=20)
+input_entry_txn = ttk.Entry(input_frame, textvariable=input_var_txn)
+input_entry_txn.place(x=140, y=260, width=320)
+
 input_label_OR = ttk.Label(input_frame, text="OR", font=("Segoe UI", 8, "bold"), background=colors.dark)
-input_label_OR.place(x=200, y=290, width = 100, height=20)
+input_label_OR.place(x=200, y=330, width = 100, height=20)
+
+input_label_gpay = ttk.Label(input_frame, text="Upload GPAY Receipt", font=("Segoe UI", 8, "bold"), background=colors.dark)
+input_label_gpay.place(x=20, y=370, width = 150, height=20)
+file_path = tk.StringVar(input_frame, "No File Selected")
+btn_upload = ttk.Button(input_frame, text="Upload File", command=lambda : upload_file(filedialog, file_path,input_label_var_person, input_label_var_amount, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn))
+btn_upload.place(x=190, y=370, width=260, height=35)
+file_label = ttk.Label(input_frame, textvariable=file_path, font=("Segoe UI", 8, "bold"), foreground='#FFFFFF', background=colors.dark)
+file_label.place(x=20, y=410, width = 460, height=20)
+
 
 app.mainloop()  
