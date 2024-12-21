@@ -2,9 +2,11 @@ import tkinter as tk
 from tkinter import ttk, filedialog
 import ttkbootstrap as ttkb
 from ttkbootstrap.constants import *
+from ttkbootstrap.scrolled import ScrolledFrame
 from db import *
 from tools import *
 import datetime as dt
+from dataview import *
 
 app = ttkb.Window(themename="vapor")
 app.geometry("1920x1080")
@@ -73,10 +75,15 @@ file_label = ttk.Label(input_frame, textvariable=file_path, font=("Segoe UI", 8,
 file_label.place(x=20, y=410, width = 460, height=20)
 
 success = tk.StringVar(input_frame, "")
-submit_btn = ttk.Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success))
+submit_btn = ttk.Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success, app, scroll_frame))
 submit_btn.place(x=20, y=450, width=460, height=35)
 
 success_label = ttk.Label(input_frame, textvariable=success, font=("Segoe UI", 8, "bold"), foreground='#00FF00', background=colors.dark)
 success_label.place(x=20, y=490, width = 460, height=20)
+
+scroll_frame = ScrolledFrame(app, height=540, width=1400)
+scroll_frame.place(x=500, y=20)
+data_view(app, scroll_frame)
+
 
 app.mainloop()  

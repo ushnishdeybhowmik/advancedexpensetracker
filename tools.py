@@ -1,5 +1,6 @@
 from gpay_ocr import extract_info_gpay
 from db import *
+import dataview
 
 def upload_file(filedialog, label_file_path, name, amount, date, time, pmode, txn_id):
     # Open a file dialog to select a file
@@ -20,10 +21,10 @@ def upload_file(filedialog, label_file_path, name, amount, date, time, pmode, tx
         pmode.set(info[4])
         txn_id.set(info[5])
 
-def handle_submit(name, amount, desc, date, time, pmode, txn_id, success):
+def handle_submit(name, amount, desc, date, time, pmode, txn_id, success, app, scroll_frame):
     users = get_users_name()
     if name.get() in users:
-        add_txn(get_user_id(name.get()), amount.get(), desc.get(), pmode.get(), txn_id.get(), date.get() + " " + time.get())
+        add_txn(get_user_id(name.get())[0], amount.get(), desc.get(), pmode.get(), txn_id.get(), date.get() + " " + time.get())
         name.set("")
         amount.set("")
         desc.set("")
@@ -42,6 +43,7 @@ def handle_submit(name, amount, desc, date, time, pmode, txn_id, success):
         pmode.set("")
         txn_id.set("")
 
+    dataview.data_view(app, scroll_frame)
     success.set("Transaction Added Successfully")
     
 def update_combobox(frame, combobox):

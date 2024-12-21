@@ -58,6 +58,20 @@ def add_txn(user_id, amount, description, payment_mode, txn_id, paid_at):
                    """, (user_id,amount, description, payment_mode, txn_id, paid_at))
     connection.commit()
     
+def get_all_txn():
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM txn")
+    return cursor.fetchall()
+
+def get_txn_columns():
+    cursor = connection.cursor()
+    cursor.execute("PRAGMA table_info(txn)")
+    return [column[1] for column in cursor.fetchall()]
+    
+def get_all_txn_with_names():
+    cursor = connection.cursor()
+    cursor.execute("SELECT txn.id, users.name, txn.amount, txn.description, txn.payment_mode, txn.txn_id, txn.paid_at, txn.created_at FROM txn JOIN users ON txn.user_id = users.id")
+    return cursor.fetchall()
 
 create_user_table()
 create_txn_table()
