@@ -1,12 +1,13 @@
 from ttkbootstrap import Window, Combobox
 from tkinter.ttk import Frame, Label, Entry, Button
-from tkinter import filedialog, StringVar, IntVar
+from tkinter import filedialog, StringVar, IntVar, Canvas
 from ttkbootstrap.constants import *
 from ttkbootstrap.scrolled import ScrolledFrame
 from db import get_users_name, get_categories
 from tools import update_combobox, upload_file, handle_submit
 from datetime import datetime
 from dataview import data_view
+from daily_spend import draw_chart
 
 # Get the path to the logo
 logo_path = "spendai/assets/logo.ico"
@@ -96,6 +97,11 @@ success_label.place(x=20, y=530, width = 460, height=20)
 scroll_frame = ScrolledFrame(app, height=540, width=1420)
 scroll_frame.place(x=500, y=0)
 data_view(app, scroll_frame)
+
+daily_spend_canvas = Canvas(app)
+daily_spend_canvas.place(x=500, y=540, width=710, height=540)
+draw_chart(daily_spend_canvas, "2024-12-22")
+
 
 
 app.mainloop()  

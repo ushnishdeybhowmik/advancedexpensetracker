@@ -42,7 +42,7 @@ def handle_submit(name, amount, desc, category,date, time, pmode, txn_id, succes
     name.set("")
     amount.set("")
     category.set("")
-    desc.set("")
+    desc.set("Payment")
     date.set("")
     time.set("")
     pmode.set("")

@@ -39,15 +39,23 @@ def extract_info_gpay(image):
     name = amount = date = pmode = txn_id = ""
 
     corpus = detected_text.split("\n")
-    # print(corpus)
+    print(corpus)
     for(i, line) in enumerate(corpus):
         if "To" in line and pattern.match(line):
             name = line.split(" ")[1:]
             name = " ".join(name)
             print(name)
-            amount = corpus[i+3]
-            amount = amount[1:].split(",")[:]
-            amount = "".join(amount)
+            amount = ''
+            for j in range(i+1, len(corpus)):
+                if not corpus[j] == '':
+                    amount = corpus[j]
+                    break
+            if not amount[0].isdigit():
+                amount = amount[1:].split(",")[:]
+                amount = "".join(amount)
+            else:
+                amount = amount.split(",")[:]
+                amount = "".join(amount)
             print(amount)
             corpus.pop(i)
         elif re.match(date_pattern, line):

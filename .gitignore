@@ -7,3 +7,4 @@ tesseract
 build
 *.spec
 dist
+distributer.bat

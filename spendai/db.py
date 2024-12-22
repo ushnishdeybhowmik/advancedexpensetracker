@@ -49,6 +49,12 @@ def get_all_txn_with_names():
     cursor.execute("SELECT * FROM txn_records")
     return cursor.fetchall()
 
+def get_txn_by_date(date):
+    cursor = connection.cursor()
+    query = "SELECT amount FROM txn_records WHERE paid_at LIKE ?"
+    cursor.execute(query, (f"%{date}%",))
+    return cursor.fetchall()
+
 def get_categories():
     cursor = connection.cursor()
     cursor.execute("SELECT name FROM category")
