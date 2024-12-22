@@ -66,8 +66,7 @@ Spend.AI is a cutting-edge expense tracking application designed to simplify per
 - Pillow
 
 ## Screenshots
-
-![Spend.AI Dashboard](https://via.placeholder.com/600x400)
+![Spend.AI Dashboard](https://github.com/user-attachments/assets/4fc55ba0-8821-4507-a6f7-da82c323e422)
 
 ## Changelog
 
