@@ -2,12 +2,18 @@ from tkinter import Canvas
 from db import get_txn_by_date
 
 def draw_chart(canvas, date):
+    
+    canvas.delete("all")
     # Sample data
     y = get_txn_by_date(date)
     y = [amt[0] for amt in y]   
     x = range(1,len(y)+1)
-    min_y = min(y)
-    max_y = max(y)
+    min_y = max_y = 0
+    if len(y) == 0:
+        pass
+    else:
+        min_y = min(y)
+        max_y = max(y)
     
     margin = 40
     height = 500 - 2*margin

@@ -88,8 +88,15 @@ btn_upload.place(x=190, y=410, width=260, height=35)
 file_label = Label(input_frame, textvariable=file_path, font=("Segoe UI", 8, "bold"), foreground='#FFFFFF', background=colors.dark)
 file_label.place(x=20, y=450, width = 460, height=20)
 
+
+
+daily_spend_canvas = Canvas(app)
+daily_spend_canvas.place(x=500, y=540, width=710, height=540)
+draw_chart(daily_spend_canvas, datetime.now().strftime("%Y-%m-%d"))
+
+
 success = StringVar(input_frame, "")
-submit_btn = Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_var_category, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success, app, scroll_frame))
+submit_btn = Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_var_category, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success, app, scroll_frame, daily_spend_canvas))
 submit_btn.place(x=20, y=490, width=460, height=35)
 
 success_label = Label(input_frame, textvariable=success, font=("Segoe UI", 8, "bold"), foreground='#00FF00', background=colors.dark)
@@ -99,9 +106,6 @@ scroll_frame = ScrolledFrame(app, height=540, width=1420)
 scroll_frame.place(x=500, y=0)
 data_view(app, scroll_frame)
 
-daily_spend_canvas = Canvas(app)
-daily_spend_canvas.place(x=500, y=540, width=710, height=540)
-draw_chart(daily_spend_canvas, "2024-12-22")
 
 
 

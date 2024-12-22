@@ -1,6 +1,8 @@
 from gpay_ocr import extract_info_gpay
 from db import *
 import dataview
+from daily_spend import draw_chart
+from datetime import datetime
 
 def upload_file(filedialog, label_file_path, name, amount, date, time, pmode, txn_id):
     # Open a file dialog to select a file
@@ -21,7 +23,7 @@ def upload_file(filedialog, label_file_path, name, amount, date, time, pmode, tx
         pmode.set(info[4])
         txn_id.set(info[5])
 
-def handle_submit(name, amount, desc, category,date, time, pmode, txn_id, success, app, scroll_frame):
+def handle_submit(name, amount, desc, category,date, time, pmode, txn_id, success, app, scroll_frame, canvas):
     users = get_users_name()
     categories = get_categories()
     user_id = None
@@ -51,6 +53,7 @@ def handle_submit(name, amount, desc, category,date, time, pmode, txn_id, succes
     dataview.data_view(app, scroll_frame)
     success.set("Transaction Added Successfully")
     app.after(3000, lambda : success.set(""))
+    draw_chart(canvas, datetime.now().strftime("%Y-%m-%d"))
     
 def update_combobox(frame, combobox, callback):
     combobox['values'] = callback()
