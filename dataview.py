@@ -25,4 +25,4 @@ def data_view(master, scroll_frame : ScrolledFrame):
         searchable=True,
         bootstyle=PRIMARY
     )
-    dt.place(x=0, y=0, height=540, width=1400)
+    dt.place(x=0, y=0, height=540, width=1420)

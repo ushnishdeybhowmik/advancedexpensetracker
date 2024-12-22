@@ -13,6 +13,7 @@ pytesseract = "*"
 pillow = "*"
 opencv-python = "*"
 pyinstaller = "*"
+googletrans = "*"
 
 [dev-packages]
 

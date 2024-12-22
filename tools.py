@@ -21,31 +21,37 @@ def upload_file(filedialog, label_file_path, name, amount, date, time, pmode, tx
         pmode.set(info[4])
         txn_id.set(info[5])
 
-def handle_submit(name, amount, desc, date, time, pmode, txn_id, success, app, scroll_frame):
+def handle_submit(name, amount, desc, category,date, time, pmode, txn_id, success, app, scroll_frame):
     users = get_users_name()
+    categories = get_categories()
+    user_id = None
+    cat_id = None
     if name.get() in users:
-        add_txn(get_user_id(name.get())[0], amount.get(), desc.get(), pmode.get(), txn_id.get(), date.get() + " " + time.get())
-        name.set("")
-        amount.set("")
-        desc.set("")
-        date.set("")
-        time.set("")
-        pmode.set("")
-        txn_id.set("")
+        user_id = get_user_id(name.get())[0]
     else:
         create_user(name.get())
-        add_txn(get_user_id(name.get())[0], amount.get(), desc.get(), pmode.get(), txn_id.get(), date.get() + " " + time.get())
-        name.set("")
-        amount.set("")
-        desc.set("")
-        date.set("")
-        time.set("")
-        pmode.set("")
-        txn_id.set("")
+        user_id = get_user_id(name.get())[0]
+    
+    if category.get() in categories:
+        cat_id = get_category_id(category.get())[0]
+    else:
+        create_category(category.get())
+        cat_id = get_category_id(category.get())[0]
+
+    add_txn(user_id, amount.get(), desc.get(), cat_id, pmode.get(), txn_id.get(), date.get() + " " + time.get())
+    name.set("")
+    amount.set("")
+    category.set("")
+    desc.set("")
+    date.set("")
+    time.set("")
+    pmode.set("")
+    txn_id.set("")
 
     dataview.data_view(app, scroll_frame)
     success.set("Transaction Added Successfully")
+    app.after(3000, lambda : success.set(""))
     
-def update_combobox(frame, combobox):
-    combobox['values'] = get_users_name()
-    frame.after(1000, lambda : update_combobox(frame, combobox))
+def update_combobox(frame, combobox, callback):
+    combobox['values'] = callback()
+    frame.after(1000, lambda : update_combobox(frame, combobox, callback))

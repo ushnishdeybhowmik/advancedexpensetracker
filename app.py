@@ -43,7 +43,7 @@ input_label_person = ttk.Label(input_frame, text="To", font=("Segoe UI", 8, "bol
 input_label_person.place(x=20, y=140, width = 100, height=20)
 input_entry_person = ttkb.Combobox(input_frame, bootstyle=DARK, textvariable=input_label_var_person, values=user_names)
 input_entry_person.place(x=140, y=140, width=320)
-update_combobox(input_frame, input_entry_person)
+update_combobox(input_frame, input_entry_person, get_users_name)
 
 input_label_var_date = tk.StringVar(input_frame, str(dt.datetime.now().strftime("%Y-%m-%d")))
 input_label_date = ttk.Label(input_frame, text="Date", font=("Segoe UI", 8, "bold"), background=colors.dark)
@@ -63,26 +63,35 @@ input_label_txn.place(x=20, y=260, width = 100, height=20)
 input_entry_txn = ttk.Entry(input_frame, textvariable=input_var_txn)
 input_entry_txn.place(x=140, y=260, width=320)
 
+categories = get_categories()
+
+input_var_category = tk.StringVar(input_frame, "")
+input_label_category = ttk.Label(input_frame, text="Category", font=("Segoe UI", 8, "bold"), background=colors.dark)
+input_label_category.place(x=20, y=300, width = 100, height=20)
+input_entry_category = ttkb.Combobox(input_frame, bootstyle=DARK, textvariable=input_var_category, values=user_names)
+input_entry_category.place(x=140, y=300, width=320)
+update_combobox(input_frame, input_entry_category, get_categories)
+
 input_label_OR = ttk.Label(input_frame, text="OR", font=("Segoe UI", 8, "bold"), background=colors.dark)
-input_label_OR.place(x=200, y=330, width = 100, height=20)
+input_label_OR.place(x=200, y=370, width = 100, height=20)
 
 input_label_gpay = ttk.Label(input_frame, text="Upload GPAY Receipt", font=("Segoe UI", 8, "bold"), background=colors.dark)
-input_label_gpay.place(x=20, y=370, width = 150, height=20)
+input_label_gpay.place(x=20, y=410, width = 150, height=20)
 file_path = tk.StringVar(input_frame, "No File Selected")
 btn_upload = ttk.Button(input_frame, text="Upload File", command=lambda : upload_file(filedialog, file_path,input_label_var_person, input_label_var_amount, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn))
-btn_upload.place(x=190, y=370, width=260, height=35)
+btn_upload.place(x=190, y=410, width=260, height=35)
 file_label = ttk.Label(input_frame, textvariable=file_path, font=("Segoe UI", 8, "bold"), foreground='#FFFFFF', background=colors.dark)
-file_label.place(x=20, y=410, width = 460, height=20)
+file_label.place(x=20, y=450, width = 460, height=20)
 
 success = tk.StringVar(input_frame, "")
-submit_btn = ttk.Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success, app, scroll_frame))
-submit_btn.place(x=20, y=450, width=460, height=35)
+submit_btn = ttk.Button(input_frame, text="Submit", command=lambda : handle_submit(input_label_var_person, input_label_var_amount, input_label_var_description, input_var_category, input_label_var_date, input_label_var_time, input_label_var_pmode, input_var_txn, success, app, scroll_frame))
+submit_btn.place(x=20, y=490, width=460, height=35)
 
 success_label = ttk.Label(input_frame, textvariable=success, font=("Segoe UI", 8, "bold"), foreground='#00FF00', background=colors.dark)
-success_label.place(x=20, y=490, width = 460, height=20)
+success_label.place(x=20, y=530, width = 460, height=20)
 
-scroll_frame = ScrolledFrame(app, height=540, width=1400)
-scroll_frame.place(x=500, y=20)
+scroll_frame = ScrolledFrame(app, height=540, width=1420)
+scroll_frame.place(x=500, y=0)
 data_view(app, scroll_frame)
 
 
