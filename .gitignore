@@ -4,3 +4,6 @@ __pycache__
 *.db
 scratch.py
 tesseract
+build
+*.spec
+dist

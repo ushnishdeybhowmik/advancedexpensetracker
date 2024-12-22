@@ -12,8 +12,8 @@ pandas = "*"
 pytesseract = "*"
 pillow = "*"
 opencv-python = "*"
-pyinstaller = "*"
 googletrans = "*"
+pyinstaller = "==5.13.2"
 
 [dev-packages]
 
