@@ -18,6 +18,7 @@ app.title("spend.ai")
 app.iconbitmap(logo_path)
 
 colors = app.style.colors
+print(colors)
 
 input_frame = Frame(app, bootstyle=DARK)
 input_frame.place(x=0, y=0, width=500, height=1080)

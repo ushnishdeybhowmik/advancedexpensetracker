@@ -47,7 +47,7 @@ def extract_info_gpay(image):
             print(name)
             amount = ''
             for j in range(i+1, len(corpus)):
-                if not corpus[j] == '':
+                if not corpus[j] == '' and not len(corpus[j]) > 7:
                     amount = corpus[j]
                     break
             if not amount[0].isdigit():
