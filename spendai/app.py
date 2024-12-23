@@ -93,6 +93,7 @@ file_label.place(x=20, y=450, width = 460, height=20)
 daily_spend_canvas = Canvas(app)
 daily_spend_canvas.place(x=500, y=540, width=710, height=540)
 draw_chart(daily_spend_canvas, datetime.now().strftime("%Y-%m-%d"))
+# draw_chart(daily_spend_canvas, '2024-12-23')
 
 
 success = StringVar(input_frame, "")
